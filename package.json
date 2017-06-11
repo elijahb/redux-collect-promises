@@ -1,5 +1,5 @@
 {
-  "name": "redux-watch-requests",
+  "name": "redux-collect-promises",
   "version": "0.1.0",
   "description": "Collect redux promises and wait for server side rendering",
   "main": "src/index.js",

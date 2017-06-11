@@ -11,7 +11,7 @@ the method sent when all promises are resolved.
 
 ## Usage
 
-```
+```js
 import { renderToString } from 'react-dom/server';
 import { createStore, compose, applyMiddleware } from 'redux';
 import watchPromises from 'redux-watch-promises';
@@ -23,6 +23,6 @@ const render = () => {
     .replace('<!-- CONTENT -->', content)
     .replace('<!-- STATE -->', JSON.stringify(state).replace(/</g, '\\u003c')));
 };
-const store = compose(applyMiddleware(watch(render), thunk))(createStore)(reducers);
+const store = compose(applyMiddleware(watchPromises(render), thunk))(createStore)(reducers);
 
 ```

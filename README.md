@@ -14,15 +14,23 @@ the method sent when all promises are resolved.
 ```js
 import { renderToString } from 'react-dom/server';
 import { createStore, compose, applyMiddleware } from 'redux';
-import watchPromises from 'redux-watch-promises';
+import collectPromises from 'redux-collect-promises';
 
-const render = () => {
-  const content = renderToString(router);
-  const state = store.getState();
-  response.send(index
-    .replace('<!-- CONTENT -->', content)
-    .replace('<!-- STATE -->', JSON.stringify(state).replace(/</g, '\\u003c')));
-};
-const store = compose(applyMiddleware(watchPromises(render), thunk))(createStore)(reducers);
+express.use((req, res) => {
+  const promises = [];
+  const store = compose(applyMiddleware(collectPromises(promises), thunk))(createStore)(reducers);
+  // First render, fires actions and collects promises
+  renderToString(router);
+
+  Promise.all(promises).then(() => {
+    // Final render when promises are resolved
+    const content = renderToString(router);
+    const state = store.getState();
+    response.send(index
+      .replace('<!-- CONTENT -->', content)
+      .replace('<!-- STATE -->', JSON.stringify(state).replace(/</g, '\\u003c')));
+  });
+});
+
 
 ```

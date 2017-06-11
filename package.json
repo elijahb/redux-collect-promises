@@ -1,0 +1,23 @@
+{
+  "name": "redux-watch-requests",
+  "version": "0.1.0",
+  "description": "Collect redux promises and wait for server side rendering",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zumb/redux-collect-promises.git"
+  },
+  "keywords": [
+    "redux",
+    "redux-thunk"
+  ],
+  "author": "Zumb",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zumb/redux-collect-promises/issues"
+  },
+  "homepage": "https://github.com/zumb/redux-collect-promises#readme"
+}
